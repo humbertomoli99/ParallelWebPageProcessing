@@ -84,7 +84,9 @@ class ParallelWebPageProcessing
     static string GetAndPrintElementContent(IPage page, string selector)
     {
         var elementHandle = page.QuerySelectorAsync(selector).GetAwaiter().GetResult();
-        var content = elementHandle.InnerTextAsync().GetAwaiter().GetResult();
+        var content = elementHandle?.InnerTextAsync().GetAwaiter().GetResult();
+        content ??= "Elemento no encontrado"; // Valor predeterminado en caso de que elementHandle sea nulo
+
         Log.Information($"Contenido del elemento {selector}: {content}");
         return content;
     }
