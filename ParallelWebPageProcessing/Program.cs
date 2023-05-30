@@ -4,7 +4,7 @@ using System.Diagnostics;
 
 class ParallelWebPageProcessing
 {
-    static void Main(string[] args)
+    static async void Main(string[] args)
     {
         int threadCount = Process.GetCurrentProcess().Threads.Count;
         Console.WriteLine($"Número de hilos: {threadCount}");
