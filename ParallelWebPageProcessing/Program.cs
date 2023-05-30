@@ -17,13 +17,17 @@ class ParallelWebPageProcessing
             // Agrega más URLs aquí...
         };
 
+        Log.Logger = new LoggerConfiguration()
+            .WriteTo.File("archivo.log")
+            .CreateLogger();
+
+
         var results = GetPageTitlesParallel(urls, threadCount).GetAwaiter().GetResult();
 
         foreach (var result in results)
         {
             Log.Information($"Título de la página: {result.Title}");
             Log.Information($"Contenido del elemento h1: {result.ElementContent}");
-            Log.Information("");
         }
 
         Log.CloseAndFlush();
